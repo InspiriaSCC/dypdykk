@@ -17,6 +17,7 @@ Du kan trykke på lyspæren for å se hvordan koden skal se ut.
 Klikk ``||scene:Next||`` for å gå videre når du er ferdig.
 
 ```blocks
+// @highlight
 scene.setBackgroundColor(9)
 ```
 
@@ -26,6 +27,7 @@ Start med å hente en ``||scene:set tilemap to||``-blokk fra ``||scene:Scene||``
 
 ```blocks
 scene.setBackgroundColor(9)
+// @highlight
 tiles.setCurrentTilemap(tilemap`level1`)
 ```
 
@@ -34,7 +36,14 @@ Klikk på det grå kvadratet i ``||scene:set tilemap to||``-blokken.
 Da åpnes verktøyvinduet du bruker til å redigere kartet over spillverdenen din.
 Du kan endre størrelsen ved å endre på tallene nede i venstre hjørne av vinduet.
 Klikk på hvert av de to tallene og endre dem så det står 32 og 32 der det stod 16 og 16.
+Klikk på ``||loops:Done||`` nede i høyre hjørne av verkstøyvinduet når du er ferdig.
 
-![Brettstørrelse]
-(https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Drawislandsize.jpg)
+![Brettstørrelse](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Drawislandsize.jpg)
+![32 x 32](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Drawislandsize002.jpg)
 
+### Steg 4 Tegn en øy
+Spillbrettet er delt inn i kvadrater som kalles tiles på engelsk, eller fliser på norsk.
+Klikk på det grå kvadratet i ``||scene:set tilemap to||``-blokken på nytt.
+Pass på at blyantverktøyet er valgt. Du finner det rett under det grå kvadratet på venstre side i vinduet.
+Velg den sandfargede flisen på venstre side i vinduet og tegn en øy i det store kvadratet midt på skjermen.
+Velg blyanten
