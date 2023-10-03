@@ -45,5 +45,13 @@ Klikk på ``||loops:Done||`` nede i høyre hjørne av verkstøyvinduet når du e
 Spillbrettet er delt inn i kvadrater som kalles tiles på engelsk, eller fliser på norsk.
 Klikk på det grå kvadratet i ``||scene:set tilemap to||``-blokken på nytt.
 Pass på at blyantverktøyet er valgt. Du finner det rett under det grå kvadratet på venstre side i vinduet.
-Velg den sandfargede flisen på venstre side i vinduet og tegn en øy i det store kvadratet midt på skjermen.
-Velg blyanten
+Velg den sandfargede flisen på venstre side i vinduet og tegn omrisset av en øy i det store kvadratet midt på skjermen.
+Pass på at omrisset med sandfliser er tett.
+
+![Island](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Island001.jpg)
+
+### Steg 5 Tegn en øy - del 2
+Nå har du tegnet sandstranden rundt øya. Da gjenstår det bare å fylle den med gress!
+Velg bøtteverktøyet under det grå kvadratet på venstre side, og en gressfarget flis.
+Når du har gjort det, klikker du midt inne i omrisset av øya, så den fylles med gressfliser.
+Etter det kan du gå over med blyantverktøyet og legge til detaljer som du vil.
