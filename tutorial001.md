@@ -30,5 +30,11 @@ tiles.setCurrentTilemap(tilemap`level1`)
 ```
 
 ### Steg 3 Bestem størrelsen på spillbrettet
+Klikk på det grå kvadratet i ``||scene:set tilemap to||``-blokken.
+Da åpnes verktøyvinduet du bruker til å redigere kartet over spillverdenen din.
+Du kan endre størrelsen ved å endre på tallene nede i venstre hjørne av vinduet.
+Klikk på hvert av de to tallene og endre dem så det står 32 og 32 der det stod 16 og 16.
 
+![Brettstørrelse]
+(https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Drawislandsize.jpg)
 
