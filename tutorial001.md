@@ -677,7 +677,7 @@ for (let index = 0; index < 25; index++) {
 
 ### Steg 25 Sett krabbene i bevegelse
 Hent en ``||sprites:set mySprite velocity to vx 50 vy 50||`` fra ``||sprites:Sprites||``-menyen og endre ``||variables:mySprite||`` til ``||variables:mySprite3||``.
-Test spillet og se hva som skjer.
+Tallet bak ``||sprites:vx||`` angir farten i høyre-venstre retningen, og tallet etter ``||sprites:vy||`` angir farten i opp-ned retningen. Test spillet og se hva som skjer.
 
 ```blocks
 let mySprite3: Sprite = null
@@ -831,6 +831,93 @@ for (let index = 0; index < 25; index++) {
 ```
 
 ### Steg 27 Gi krabbene tilfeldig fart
-For å gjøre spillet mindre forutsigbart kan du bruke en tilfeldighetsfunksjon fra ``||maths:Maths||``
+For å gjøre spillet mindre forutsigbart kan du bruke en tilfeldighetsfunksjon fra ``||maths:Maths||``-menyen for å oppgi farten til krabbene.
+Hent to ovale ``||maths:pick random 0 to 10||``-blokker fra ``||mathc:Maths||``-menyen og sett dem inn i de to hvite feltene der det nå står 50 i ``||sprites:set mySprite3 velocity to vx 50 vy 50||``.
+Endre 0 til -50 og 10 til 50 i begge de to ovale blokkene. Test spillet og legg merke til hvordan krabbene beveger seg nå.
+
+```blocks
+let mySprite3: Sprite = null
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+for (let index = 0; index < 25; index++) {
+    mySprite3 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . 3 3 . . . . . . . . . . 3 3 . 
+        3 . . 3 . . . . . . . . 3 . . 3 
+        . . 3 . 3 . 3 3 3 3 . 3 . 3 . . 
+        . 3 . . . 3 3 3 3 3 3 . . . 3 . 
+        3 . . 3 3 1 f 3 3 1 f 3 3 . . 3 
+        . . 3 . 3 3 3 3 3 3 3 3 . 3 . . 
+        . 3 . . 3 3 3 3 3 3 3 3 . . 3 . 
+        3 . . 3 . 3 . . . . 3 . 3 . . 3 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . 3 . . . 3 b . . b 3 . . . 3 . 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . . . 3 . . . . . . . . 3 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+    mySprite3.setVelocity(randint(-50, 50), randint(-50, 50))
+    mySprite3.setBounceOnWall(true)
+}
+```
+
+### Fremmede arter - Del 2 @unplugged
+En av grunnene til at kongekrabben er fryktet, er at det fort blir mange av dem, og at de nesten støvsuger havbunnen for dyr som lever der.
+Kongekrabben spiser muslinger, sjøstjerner, børstemark og rogn fra fisk, og kan etterlate seg områder som nærmest er tømt for liv.
+En annen art som lager problemer er stillehavsøsters. Stillehavsøsters formerer seg raskt, og de vokser fort. Det gjør at de dekker store områder der de slår seg ned.
+Det blir ikke plass til andre muslingarter, som for eksempel blåskjell. Skallet til stillehavsøstersen er hardt, med skarpe kanter.
+Dyr som normalt spiser blåskjell klarer ikke å spise stillehavsøsters, og får problemer med å finne mat der stillehavsøstersen overtar.
+Å fjerne fremmedarter kan være en nærmest umulig oppgave. Nå skal du forsøke å fange de vandrende kongekrabbene.
+
+### Steg 28 Fang krabbene
+
+
+
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
