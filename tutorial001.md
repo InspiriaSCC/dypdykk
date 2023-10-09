@@ -928,7 +928,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 ```
 
 ### Steg 29 Fang krabbene - Del 2
-Hent en ``||sprites:destroy mySprite||`` fra ``||sprites:Sprite||``-menyen og legg den inn i `||sprites:on sprite of kind Player overlaps otherSprite of kind Enemy||`` blokken.
+Hent en ``||sprites:destroy mySprite||`` fra ``||sprites:Sprite||``-menyen og legg den inn i ``||sprites:on sprite of kind Player overlaps otherSprite of kind Enemy||``-blokken.
 
 ```blocks
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -937,6 +937,111 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 ```
 
+### Steg 30 Fang krabbene - Del 3
+Klikk på ovalen som det står ``||variables:otherSprite||`` på i ``||sprites:on sprite of kind Player overlaps otherSprite of kind Enemy||``-blokken og dra den dit hvor det står ``||variables:mySprite||`` i ``||sprites:destroy mySprite||``-blokken.
+Test spillet og sjekk at krabbene blir borte når du tar dem.
 
+```blocks
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    // @highlight
+    sprites.destroy(otherSprite)
+})
+```
+
+### Steg 31 Få poeng for krabbene
+Hent en ``||info:change score by 1||``-blokk fra ``||info:Info||``-menyen og plasser under ``||sprites:destroy mySprite||`` i ``||sprites:on sprite of kind Player overlaps otherSprite of kind Enemy||``-blokken.
+Test spillet og sjekk at du får poeng når du fanger en krabbe.
+
+```blocks
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
+    // @highlight
+    info.changeScoreBy(1)
+})
+```
+
+### Steg 32 Begrens tiden
+Nå gjenstår det bare å gjøre spillet litt mer utfordrende.
+Hent en ``||info:start countdown||``-blokk fra ``||info:Info||``-menyen og plasser den i hovedkoden din, nederst i ``||loops:on start||``-blokken.
+Endre tiden fra 10 sekunder til 30. Test spillet noen ganger. Hva ble high-scoren din? 50 poeng er den høyest mulige poengsummen om du har fulgt instruksjonen til punkt og prikke.
+
+```blocks
+let mySprite3: Sprite = null
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+for (let index = 0; index < 25; index++) {
+    mySprite3 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . 3 3 . . . . . . . . . . 3 3 . 
+        3 . . 3 . . . . . . . . 3 . . 3 
+        . . 3 . 3 . 3 3 3 3 . 3 . 3 . . 
+        . 3 . . . 3 3 3 3 3 3 . . . 3 . 
+        3 . . 3 3 1 f 3 3 1 f 3 3 . . 3 
+        . . 3 . 3 3 3 3 3 3 3 3 . 3 . . 
+        . 3 . . 3 3 3 3 3 3 3 3 . . 3 . 
+        3 . . 3 . 3 . . . . 3 . 3 . . 3 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . 3 . . . 3 b . . b 3 . . . 3 . 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . . . 3 . . . . . . . . 3 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+    mySprite3.setVelocity(randint(-50, 50), randint(-50, 50))
+    mySprite3.setBounceOnWall(true)
+}
+info.startCountdown(10)
+```
+
+### Steg 33
+Gratulerer! Du har kodet et helt spill der du forsøker å bekjempe noen av problemene i havet.
+Når du trykker på ``||scene:Done||`` kommer du til å få tilgang til alle kodeblokkene i MakeCode Arcade.
+Du kan også velge om du vil dele spillet ditt med andre brukere på MakeCode, slik at de kan spille det.
+Og så kan du kanskje bruke det du har lært til å lage flere dyr eller typer forsøpling, og gjøre spillet enda større?
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
