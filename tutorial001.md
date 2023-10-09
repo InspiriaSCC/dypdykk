@@ -55,3 +55,147 @@ Nå har du tegnet sandstranden rundt øya. Da gjenstår det bare å fylle den me
 Velg bøtteverktøyet under det grå kvadratet på venstre side, og en gressfarget flis.
 Når du har gjort det, klikker du midt inne i omrisset av øya, så den fylles med gressfliser.
 Etter det kan du gå over med blyantverktøyet og legge til detaljer som du vil.
+Ikke glem å trykke på ``||loops:Done||`` nede i høyre hjørne når du er fornøyd!
+Klikk på lyspæren for å se hvor du finner bøtteverktøyet.
+
+![Gressflis og bøtteverktøy](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Islandbucket.jpg)
+
+### Steg 6 Lag en spillfigur
+Nå trenger du en spillfigur som du kan kontrollere.
+Hent blokken ``||variables:set mySprite to sprite of kind Player||`` fra ``||sprites:Sprites||``-menyen og legg den inn under ``||scene:set tilemap to||``-blokken i koden din.
+
+```blocks
+scene.setBackgroundColor(9)
+tiles.setTilemap(tiles.createTilemap(hex`2000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000001010100000000000000000000000000000000000000000000000000000001010101010101010000000000000000000000000000000000000000000001010101010101010101010101000000000000000000000000000000000001010102020202020202020202020100000000000000000000000000000000010102020202020202020202020202010100000000000000000000000000000001020202020202020202020202020201000000000000000000000000000000010102020202020202020202020202020100000000000000000000000000000001020202020202020202020202020201010000000000000000000000000000000102020202020202020202020202010100000000000000000000000000000000010202020202020202020202020101000000000000000000000000000000000001020202020202020202020201010000000000000000000000000000000000000101020202020202020202020100000000000000000000000000000000000000000102020202020202020202010000000000000000000000000000000000000000010102020202020202020201010000000000000000000000000000000000000000010102020202020202020201000000000000000000000000000000000000000000010102020202020202020100000000000000000000000000000000000000000000010102020202020202010000000000000000000000000000000000000000000000010102020202020201000000000000000000000000000000000000000000000000010101020202010100000000000000000000000000000000000000000000000000000101010101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000`, img`
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+................................
+`, [myTiles.transparency16, sprites.castle.tilePath5, sprites.castle.tileGrass1], TileScale.Sixteen))
+// @highlight
+let mySprite = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+```
+
+### Steg 7 Lag en spillfigur - Del 2
+Klikk på det grå kvadratet i ``||variables:set mySprite to sprite of kind Player||``-blokken for å åpne sprite-editoren.
+Her kan du enten tegne din egen spillfigur, eller du kan klikke på "Gallery" på linjen øverst i vinduet og velge deg en av figurene du finner der.
+
+![Galleri](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/SpriteGallery.jpg)
+
+### Steg 8 Lag en spillfigur - Del 3
+Nå kan du se spillfiguren din på det lille spillkonsollet når du starter spillet, men kanskje den dukker opp midt ute i havet?.
+Spillfiguren skal starte spillet på øya, og til det trenger du en spesiell blokk.
+Hent blokken ``||scene:place mySprite on top of random||`` fra ``||scene:Scene||``-menyen, og plasser den nedesrt i koden din.
+Klikk på det grå kvadratet på blokken, og velg det gressfargede kvadratet fra menyen som dukker opp.
+
+```blocks
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+// @highlight
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+```
+
+### Steg 9 Lag en spillfigur - Del 4
+Forsvant spillfiguren din da spillet startet igjen?
+For at spillfiguren din alltid skal holde seg synlig i spillet, må du hente blokken ``||scene:camera follow sprite mySprite||`` fra ``||scene:Scene-menyen||``.
+Legg den inn nederst i koden din. Sjekk om du kan se spillfiguren når spillet starter på nytt.
+
+```blocks
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+// @highlight
+scene.cameraFollowSprite(mySprite)
+```
+
+### Steg 10 Lage en spillfigur - Del 5
+Spillfiguren din skal nå havne på en tilfeldig gressfarget flis hver gang spillet starter.
+Du kan trykke på knappen med to piler som går rundt hverandre under spillskjermen for å starte spillet på nytt flere ganger.
+Da kan du sjekke at figuren din starter på forskjellige steder hver gang.
+
+![Refresh](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Refresh.jpg)
+
+
+
+<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
