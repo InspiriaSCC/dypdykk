@@ -272,6 +272,7 @@ for (let index = 0; index < 25; index++) {
 ### Steg 13 Lag en mikroplastsprite
 Nå trenger du en ``||variables:set mySprite2 to sprite of kind Player||``-blokk fra ``||sprites:Sprites||``-menyen.
 Legg den inn i gapet på ``||loops:repeat 25 times||``-blokken.
+Endre typen sprite til ``||sprites:Food||`` ved å klikke på ordet ``||sprites:Player||`` sist i ``||variables:set mySprite2 to sprite of kind Player||``-blokken og så klikke på ordet ``||sprites:Food||`` i menyen som dukker opp.
 
 ```blocks
 let mySprite2: Sprite = null
@@ -316,7 +317,7 @@ for (let index = 0; index < 4; index++) {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Player)
+        `, SpriteKind.Food)
 }
 ```
 
@@ -329,6 +330,12 @@ Når større dyr spiser dyreplankton med mikroplast i seg, får de også i seg p
 Dyrene kan ikke fordøye plasten, men den kan bli værende i kroppen deres og gjøre skade.
 Man har gjort funn av både fugler og delfiner med magen så full av plast at de ikke får i seg mat.
 Derfor må plasten bort fra havet.
+
+### Del 14 Tegn din egen mikroplastsprite
+Klikk på det grå kvadratet for å åpne sprite-edotoren, og tegn mikroplast ved å lage tilfeldige mønstre av små prikker og streker i sterke farger.
+Husk å bruke farger som vil synes mot den blå havbakgrunnen i spillet.
+Klikk på ``||loops:Done||`` nede i høyre hjørne når du er fornøyd.
+
 
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
