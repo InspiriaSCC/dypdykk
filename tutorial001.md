@@ -468,6 +468,7 @@ Nå skal du lage en invaderende type krabbe og forsøke å fange den.
 Havet rundt øya er blitt infisert av kongekrabber som ødelegger økosystemet.
 For å lage mange kongekrabber trenger du en ny løkke.
 Hent en ``||loops:repeat 4 times||``-blokk fra ``||loops:Loops||``-menyen og legg den inn nederst i ``||loops:on start||``-hovedkoden din.
+Endre tallet 4 til 25.
 
 ```blocks
 let mySprite2: Sprite = null
@@ -516,7 +517,7 @@ for (let index = 0; index < 25; index++) {
     tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
 }
 // @highlight
-for (let index = 0; index < 4; index++) {
+for (let index = 0; index < 25; index++) {
 }
 ```
 
@@ -571,7 +572,7 @@ for (let index = 0; index < 25; index++) {
         `, SpriteKind.Food)
     tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
 }
-for (let index = 0; index < 4; index++) {
+for (let index = 0; index < 25; index++) {
     // @highlight
     mySprite3 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -597,5 +598,239 @@ for (let index = 0; index < 4; index++) {
 ### Steg 23 Tegn en krabbe
 Klikk på det grå kvadratet i ``||variables:set mySprite3 to sprite of kind Enemy||``-blokken for å åpne sprite-editoren.
 Tegn en kongekrabbe! Du kan klikke på lyspæren for å se et eksempel på hvordan en krabbe kan se ut.
+
+![Kongekrabbe](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Kongekrabbe.jpg)
+
+### Steg 24 Plasser kongekrabbene tilfeldig
+Hent en ``||scene:place mySprite on top of random||`` fra ``||scene:Scene||``-menyen og endre ``||variables:mySprite||`` til ``||variables:mySprite3||`` ved å klikke på ordet og velge ``||variables:mySprite3||`` fra menyen.
+
+```blocks
+let mySprite3: Sprite = null
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+for (let index = 0; index < 25; index++) {
+    mySprite3 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . 3 3 . . . . . . . . . . 3 3 . 
+        3 . . 3 . . . . . . . . 3 . . 3 
+        . . 3 . 3 . 3 3 3 3 . 3 . 3 . . 
+        . 3 . . . 3 3 3 3 3 3 . . . 3 . 
+        3 . . 3 3 1 f 3 3 1 f 3 3 . . 3 
+        . . 3 . 3 3 3 3 3 3 3 3 . 3 . . 
+        . 3 . . 3 3 3 3 3 3 3 3 . . 3 . 
+        3 . . 3 . 3 . . . . 3 . 3 . . 3 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . 3 . . . 3 b . . b 3 . . . 3 . 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . . . 3 . . . . . . . . 3 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    // @highlight
+    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+}
+```
+
+### Steg 25 Sett krabbene i bevegelse
+Hent en ``||sprites:set mySprite velocity to vx 50 vy 50||`` fra ``||sprites:Sprites||``-menyen og endre ``||variables:mySprite||`` til ``||variables:mySprite3||``.
+Test spillet og se hva som skjer.
+
+```blocks
+let mySprite3: Sprite = null
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+for (let index = 0; index < 25; index++) {
+    mySprite3 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . 3 3 . . . . . . . . . . 3 3 . 
+        3 . . 3 . . . . . . . . 3 . . 3 
+        . . 3 . 3 . 3 3 3 3 . 3 . 3 . . 
+        . 3 . . . 3 3 3 3 3 3 . . . 3 . 
+        3 . . 3 3 1 f 3 3 1 f 3 3 . . 3 
+        . . 3 . 3 3 3 3 3 3 3 3 . 3 . . 
+        . 3 . . 3 3 3 3 3 3 3 3 . . 3 . 
+        3 . . 3 . 3 . . . . 3 . 3 . . 3 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . 3 . . . 3 b . . b 3 . . . 3 . 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . . . 3 . . . . . . . . 3 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+    // @highlight
+    mySprite3.setVelocity(50, 50)
+}
+```
+
+### Steg 26 Få krabbene til å sprette tilbake
+Som du ser går alle krabben ned mot høyre helt til de treffer utkanten av spillebrettet, og så følger de kanten til alle sitter nede i høyre hjørne.
+Hent blokken ``||sprites:set mySprite bounce on wall on||`` fra ``||sprites:Sprites||``-menyen og legge den inn nederst i ``||loops:repeat 25 times||``-løkken der krabbene blir laget.
+Endre ``||variables:mySprite||`` til ``||variables:mySprite3||``.
+Test spillet og se hva som skjer.
+
+```blocks
+let mySprite3: Sprite = null
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+for (let index = 0; index < 25; index++) {
+    mySprite3 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . 3 3 . . . . . . . . . . 3 3 . 
+        3 . . 3 . . . . . . . . 3 . . 3 
+        . . 3 . 3 . 3 3 3 3 . 3 . 3 . . 
+        . 3 . . . 3 3 3 3 3 3 . . . 3 . 
+        3 . . 3 3 1 f 3 3 1 f 3 3 . . 3 
+        . . 3 . 3 3 3 3 3 3 3 3 . 3 . . 
+        . 3 . . 3 3 3 3 3 3 3 3 . . 3 . 
+        3 . . 3 . 3 . . . . 3 . 3 . . 3 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . 3 . . . 3 b . . b 3 . . . 3 . 
+        . . 3 . . 3 3 . . 3 3 . . 3 . . 
+        . . . 3 . . . . . . . . 3 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+    mySprite3.setVelocity(50, 50)
+    // @highlight
+    mySprite3.setBounceOnWall(true)
+}
+```
+
+### Steg 27 Gi krabbene tilfeldig fart
+For å gjøre spillet mindre forutsigbart kan du bruke en tilfeldighetsfunksjon fra ``||maths:Maths||``
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
