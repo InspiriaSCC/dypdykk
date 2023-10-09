@@ -1035,7 +1035,8 @@ for (let index = 0; index < 25; index++) {
     mySprite3.setVelocity(randint(-50, 50), randint(-50, 50))
     mySprite3.setBounceOnWall(true)
 }
-info.startCountdown(10)
+// @highlight
+info.startCountdown(30)
 ```
 
 ### Steg 33
