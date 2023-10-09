@@ -196,6 +196,139 @@ Da kan du sjekke at figuren din starter på forskjellige steder hver gang.
 
 ![Refresh](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Refresh.jpg)
 
+### Steg 11 Styre spillfiguren
+For å kunne bevege spillfiguren din rundt i spillet trenger du blokken ``||controller:move mySprite with buttons||``.
+Hent den fra ``||controller:Controller||``-menyen og legg den inn nederst i koden din.
+Nå kan du styre spillfiguren din rundt på skjermen. Test litt før du går videre.
+
+```blocks
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+// @highlight
+controller.moveSprite(mySprite)
+```
+
+### Mikroplast @unplugged
+Den første oppgaven til spillfiguren blir å fjerne mikroplast fra havet rundt øya.
+Mikroplast er et økende problem i havet, og utgjør en stadig større trussel for alt som lever der.
+Å fjerne plast fra havet er derfor en viktig oppgave.
+Mikroplasten skal være en ny sprite, men du må ha mange kopier av den.
+Derfor skal koden for mikroplasten ligge i en løkke, eller loop, som det heter på kodespråket.
+
+### Steg 12 Lag en løkke
+Hent en ``||loops:repeat 4 times||``-blokk fra ``||loops:Loops||``-menyen og sett den inn nederst i koden din.
+Endre tallet 4 til 25 ved å klikke på den hvite ovalen og skrive inn tallet 25.
+
+```blocks
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+// @highlight
+for (let index = 0; index < 25; index++) {
+	
+}
+```
+
+### Steg 13 Lag en mikroplastsprite
+Nå trenger du en ``||variables:set mySprite2 to sprite of kind Player||``-blokk fra ``||sprites:Sprites||``-menyen.
+Legg den inn i gapet på ``||loops:repeat 25 times||``-blokken.
+
+```blocks
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 4; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
+}
+```
+
+### Mikroplast Del 2 @unplugged
+Plast råtner ikke, men når den blir liggende i naturen brytes den ned til stadig mindre plastbiter.
+Mikroplast er plastbiter som er mindre enn 5 millimeter store.
+Biter av plast kan likne på mat, sånn at dyr spiser den.
+Noen plastbiter er til og med så små at dyreplankton kans spise dem.
+Når større dyr spiser dyreplankton med mikroplast i seg, får de også i seg plast.
+Dyrene kan ikke fordøye plasten, men den kan bli værende i kroppen deres og gjøre skade.
+Man har gjort funn av både fugler og delfiner med magen så full av plast at de ikke får i seg mat.
+Derfor må plasten bort fra havet.
 
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
