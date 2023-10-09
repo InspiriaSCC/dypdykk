@@ -1,8 +1,8 @@
 ### @activities true
 
-# Lag et spill om miljøet i havet
+# Dypdykk: Lag et spill om miljøet i havet
 ## Introduksjon
-### Havet @unplugged
+### Dypdykk @unplugged
 Over 70 prosent av overflaten til jorda er dekket av hav.
 Havet er viktig for alt liv på jorda.
 For eksempel er regnet som faller fra skyene havvann som har fordampet, og over halvparten av oksygenet vi puster inn kommer fra alger i havet.
@@ -333,7 +333,7 @@ Man har gjort funn av både fugler og delfiner med magen så full av plast at de
 Derfor må plasten bort fra havet.
 
 ### Steg 14 Tegn din egen mikroplastsprite
-Klikk på det grå kvadratet for å åpne sprite-edotoren, og tegn mikroplast ved å lage tilfeldige mønstre av små prikker og streker i sterke farger.
+Klikk på det grå kvadratet for å åpne sprite-editoren, og tegn mikroplast ved å lage tilfeldige mønstre av små prikker og streker i sterke farger.
 Husk å bruke farger som vil synes mot den blå havbakgrunnen i spillet.
 Klikk på ``||loops:Done||`` nede i høyre hjørne når du er fornøyd.
 
@@ -457,5 +457,145 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 ```
 
+### Fremmede arter @unplugged
+En fremmed art, eller invaderende art, er en art som blir funnet der den egentlig ikke hører hjemme.
+I havet kan fremmede arter komme med havstrømmer eller skipstrafikk.
+I Norge har vi nå mange arter som ikke fantes her tidligere: Stillehavsøsters, kongekrabbe, amerikansk hummer, japansk drivtang, havnespy, amerikansk lobemanet og rombekrabbe er noen eksempler.
+At nye arter kommer til et område, kan skape problemer for dyrene som allerede lever der.
+Nå skal du lage en invaderende type krabbe og forsøke å fange den.
+
+### Steg 21 Lag en fremmed art
+Havet rundt øya er blitt infisert av kongekrabber som ødelegger økosystemet.
+For å lage mange kongekrabber trenger du en ny løkke.
+Hent en ``||loops:repeat 4 times||``-blokk fra ``||loops:Loops||``-menyen og legg den inn nederst i ``||loops:on start||``-hovedkoden din.
+
+```blocks
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+// @highlight
+for (let index = 0; index < 4; index++) {
+}
+```
+
+### Steg 22 Lag en krabbesprite
+Hent en ``||variables:set mySprite3 to sprite of kind Player||``-blokk fra ``||sprites:Sprites||``-menyen og legg den inn i den nye ``||loops:repeat 4 times||``-blokken.
+Klikk på ordet ``||sprites:Player||`` og velg ``||sprites:Enemy||`` fra menyen som popper opp.
+
+```blocks
+let mySprite3: Sprite = null
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+for (let index = 0; index < 4; index++) {
+    // @highlight
+    mySprite3 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+}
+```
+
+### Steg 23 Tegn en krabbe
+Klikk på det grå kvadratet i ``||variables:set mySprite3 to sprite of kind Enemy||``-blokken for å åpne sprite-editoren.
+Tegn en kongekrabbe! Du kan klikke på lyspæren for å se et eksempel på hvordan en krabbe kan se ut.
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
