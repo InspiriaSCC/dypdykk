@@ -41,7 +41,7 @@ Klikk på ``||loops:Done||`` nede i høyre hjørne av verkstøyvinduet når du e
 ![Brettstørrelse](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Drawislandsize.jpg)
 ![32 x 32](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Drawislandsize002.jpg)
 
-### Steg 4 Tegn en øy
+### Steg 4 Tegn en øy - Del 1
 Spillbrettet er delt inn i kvadrater som kalles tiles på engelsk, eller fliser på norsk.
 Klikk på det grå kvadratet i ``||scene:set tilemap to||``-blokken på nytt.
 Pass på at blyantverktøyet er valgt. Du finner det rett under det grå kvadratet på venstre side i vinduet.
@@ -50,7 +50,7 @@ Pass på at omrisset med sandfliser er tett.
 
 ![Island](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Island001.jpg)
 
-### Steg 5 Tegn en øy - del 2
+### Steg 5 Tegn en øy - Del 2
 Nå har du tegnet sandstranden rundt øya. Da gjenstår det bare å fylle den med gress!
 Velg bøtteverktøyet under det grå kvadratet på venstre side, og en gressfarget flis.
 Når du har gjort det, klikker du midt inne i omrisset av øya, så den fylles med gressfliser.
@@ -60,7 +60,7 @@ Klikk på lyspæren for å se hvor du finner bøtteverktøyet.
 
 ![Gressflis og bøtteverktøy](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Islandbucket.jpg)
 
-### Steg 6 Lag en spillfigur
+### Steg 6 Lag en spillfigur - Del 1
 Nå trenger du en spillfigur som du kan kontrollere.
 Hent blokken ``||variables:set mySprite to sprite of kind Player||`` fra ``||sprites:Sprites||``-menyen og legg den inn under ``||scene:set tilemap to||``-blokken i koden din.
 
@@ -300,6 +300,7 @@ tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
 scene.cameraFollowSprite(mySprite)
 controller.moveSprite(mySprite)
 for (let index = 0; index < 4; index++) {
+    // @highlight
     mySprite2 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -331,11 +332,130 @@ Dyrene kan ikke fordøye plasten, men den kan bli værende i kroppen deres og gj
 Man har gjort funn av både fugler og delfiner med magen så full av plast at de ikke får i seg mat.
 Derfor må plasten bort fra havet.
 
-### Del 14 Tegn din egen mikroplastsprite
+### Steg 14 Tegn din egen mikroplastsprite
 Klikk på det grå kvadratet for å åpne sprite-edotoren, og tegn mikroplast ved å lage tilfeldige mønstre av små prikker og streker i sterke farger.
 Husk å bruke farger som vil synes mot den blå havbakgrunnen i spillet.
 Klikk på ``||loops:Done||`` nede i høyre hjørne når du er fornøyd.
 
+![Mikroplast](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Mikroplast.jpg)
+
+### Steg 15 Plasser mikroplasten tilfeldig i havet
+Om du tester spillet nå, finner du mikrplast bare ett sted i havet.
+For å spre de 25 spritene, må du plassere hver av dem på et tilfeldig sted i havet.
+Hent blokken ``||scene:place mySprite on top of random||`` fra ``||scene:Scene||``-menyen og legg den inn nederst i ``||loops:repeat 25 times||``-blokken.
+Endre ``||variables:mySprite||`` til ``||variables:mySprite2||`` ved å klikke på ordet og velge ``||variables:mySprite2||`` fra menyen som kommer opp.
+La det grårutede kvadratet være slik det er. Da havner mikroplasten din i havet, der det ikke er noen fliser.
+Test spillet for sjekke om det nå er mikroplast i havet rundt øya.
+
+```blocks
+let mySprite2: Sprite = null
+scene.setBackgroundColor(9)
+tiles.setTilemap(tilemap`level2`)
+let mySprite = sprites.create(img`
+    . . . . . f f 4 4 f f . . . . . 
+    . . . . f 5 4 5 5 4 5 f . . . . 
+    . . . f e 4 5 5 5 5 4 e f . . . 
+    . . f b 3 e 4 4 4 4 e 3 b f . . 
+    . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+    . f 3 3 e b 3 e e 3 b e 3 3 f . 
+    . f 3 3 f f e e e e f f 3 3 f . 
+    . f b b f b f e e f b f b b f . 
+    . f b b e 1 f 4 4 f 1 e b b f . 
+    f f b b f 4 4 4 4 4 4 f b b f f 
+    f b b f f f e e e e f f f b b f 
+    . f e e f b d d d d b f e e f . 
+    . . e 4 c d d d d d d c 4 e . . 
+    . . e f b d b d b d b b f e . . 
+    . . . f f 1 d 1 d 1 d f f . . . 
+    . . . . . f f b b f f . . . . . 
+    `, SpriteKind.Player)
+tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass1)
+scene.cameraFollowSprite(mySprite)
+controller.moveSprite(mySprite)
+for (let index = 0; index < 25; index++) {
+    mySprite2 = sprites.create(img`
+        . . . . 8 . . . . . . . . . . . 
+        . . . . . 8 . . . . . . . . . . 
+        . . . . . . 8 . . . 2 2 . . . . 
+        . . . 3 3 . . . . . . . 2 . . . 
+        . . 3 . 5 . . . . . . . . . . . 
+        . . . 5 . . . . . . . . . . . . 
+        . . 5 . . . . . 7 7 . . . . . . 
+        . . . . . 5 5 . . . 7 . . . . . 
+        . . 8 . . . 5 . . 3 . . . . . . 
+        . 8 . . . . . 3 3 . . . a . . . 
+        8 . . . 7 . . . . . . a . . . . 
+        . . . . 7 . . . . . a . . . . . 
+        . . . 7 . . . . . . . . . . . . 
+        . . . . . . . 4 . . . . . . . . 
+        . . . . . . . . 4 . . . . . . . 
+        . . . . . . . . . 4 . . . . . . 
+        `, SpriteKind.Food)
+    // @highlight
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+}
+```
+
+### Steg 16 Fang mikroplasten - Del 1
+For å fange mikroplasten trenger du en blokk som heter ``||sprites:on sprite of kind Player overlaps otherSprite of kind Player||``.
+Hent den fra ``||sprites:Sprites||``-menyen og legg den ved siden av resten av koden din.
+
+```blocks
+// @highlight
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+	
+})
+```
+
+### Steg 17 Fang mikroplasten - Del 2
+Du må gjøre en endring i den siste blokken.
+Klikk på det siste stedet det står ``||sprites:Player||`` og velg ``||sprites:Food||`` fra menyen som dukker opp, slik at det står ``||sprites:on sprite of kind Player overlaps otherSprite of kind Food||``.
+
+```blocks
+// @highlight
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+	
+})
+```
+
+### Steg 18 Fang mikroplasten - Del 3
+For å få en sprite til å forsvinne fra spillet trenger du blokken ``||sprites:destroy mySprite||``.
+Hent den fra ``||sprites:Sprites||``-menyen og legg den inn i ``||sprites:on sprite of kind Player overlaps otherSprite of kind Food||``-blokken.
+Om du tester spillet nå, vil du se at spillfiguren din forsvinner når du treffer et sted med mikroplast, men det skal vi fikse i neste steg.
+
+```blocks
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    // @highlight
+    sprites.destroy(mySprite)
+})
+```
+
+### Steg 19 Fang mikroplasten - Del 4
+Blokken ``||sprites:on sprite of kind Player overlaps otherSprite of kind Food||`` beskriver en hendelse der en sprite av typen ``||sprites:Player||`` overlapper en annen sprite av typen ``||sprites:Food||``.
+Spillfiguren din er en ``||variables:sprite||`` av typen ``||sprites:Player||``, mens mikroplasten nå er en ``||variables:otherSprite||`` av typen ``||sprites:Food||``.
+Du må altså sørge for at det er ``||variables:otherSprite||`` som blir fjernet.
+Klikk på det ovale feltet der det står ``||variables:otherSprite||`` og dra ``||variables:otherSprite||`` ned i ovalen i ``||sprites:destroy mySprite||`` der det står ``||variables:otherSprite||``, slik at det står ``||sprites:destroy otherSprite||`` der.
+Test spillet og sjekk at mikroplasten blir borte.
+
+```blocks
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    // @highlight
+    sprites.destroy(otherSprite)
+})
+```
+
+### Steg 20 Få poeng
+For å få poeng må du bruke blokken ``||info:change score by 1||``.
+Hent ``||info:change score by 1||`` fra ``||info:Info||``-menyen og legg den inn i ``||sprites:on sprite of kind Player overlaps otherSprite of kind Food||``-blokken sammen med ``||sprites:destroy otherSprite||``.
+Test spillet. Klarer du å finne alle 25 mikroplastfeltene?
+
+```blocks
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
+    // @highlight
+    info.changeScoreBy(1)
+})
+```
 
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
