@@ -902,6 +902,7 @@ for (let index = 0; index < 25; index++) {
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+    // @highlight
     mySprite3.setVelocity(randint(-50, 50), randint(-50, 50))
     mySprite3.setBounceOnWall(true)
 }
@@ -915,8 +916,26 @@ Det blir ikke plass til andre muslingarter, som for eksempel blåskjell. Skallet
 Dyr som normalt spiser blåskjell klarer ikke å spise stillehavsøsters, og får problemer med å finne mat der stillehavsøstersen overtar.
 Å fjerne fremmedarter kan være en nærmest umulig oppgave. Nå skal du forsøke å fange de vandrende kongekrabbene.
 
-### Steg 28 Fang krabbene
+### Steg 28 Fang krabbene - Del 1
+Nå trenger du en ny ``||sprites:on sprite of kind Player overlaps otherSprite of kind Player||`` blokk fra ``||sprites:Sprites||``-menyen.
+Legg den ved siden av resten av koden din, og endre det siste stedet der det står ``||sprites:Player||`` til ``||sprites:Enemy||``.
 
+```blocks
+// @highlight
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+	
+})
+```
+
+### Steg 29 Fang krabbene - Del 2
+Hent en ``||sprites:destroy mySprite||`` fra ``||sprites:Sprite||``-menyen og legg den inn i `||sprites:on sprite of kind Player overlaps otherSprite of kind Enemy||`` blokken.
+
+```blocks
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    // @highlight
+    sprites.destroy(mySprite)
+})
+```
 
 
 
