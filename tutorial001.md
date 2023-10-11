@@ -597,11 +597,11 @@ for (let index = 0; index < 25; index++) {
 
 ### Steg 23 Tegn en krabbe
 Klikk på det grå kvadratet i ``||variables:set mySprite3 to sprite of kind Enemy||``-blokken for å åpne sprite-editoren.
-Tegn en kongekrabbe! Du kan klikke på lyspæren for å se et eksempel på hvordan en krabbe kan se ut.
+Tegn en krabbe! Du kan klikke på lyspæren for å se et eksempel på hvordan en krabbe kan se ut.
 
 ![Kongekrabbe](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Kongekrabbe.jpg)
 
-### Steg 24 Plasser kongekrabbene tilfeldig
+### Steg 24 Plasser krabbene tilfeldig
 Hent en ``||scene:place mySprite on top of random||`` fra ``||scene:Scene||``-menyen og endre ``||variables:mySprite||`` til ``||variables:mySprite3||`` ved å klikke på ordet og velge ``||variables:mySprite3||`` fra menyen.
 
 ```blocks
@@ -909,9 +909,11 @@ for (let index = 0; index < 25; index++) {
 ```
 
 ### Fremmede arter - Del 2 @unplugged
-En av grunnene til at kongekrabben er fryktet, er at det fort blir mange av dem, og at de nesten støvsuger havbunnen for dyr som lever der.
+Kongekrabben er en av de fryktede nye artene.
+Årsaken er at det fort blir mange av dem, og at de nesten støvsuger havbunnen for dyr som lever der.
 Kongekrabben spiser muslinger, sjøstjerner, børstemark og rogn fra fisk, og kan etterlate seg områder som nærmest er tømt for liv.
-En annen art som lager problemer er stillehavsøsters. Stillehavsøsters formerer seg raskt, og de vokser fort. Det gjør at de dekker store områder der de slår seg ned.
+En annen art som lager problemer er stillehavsøsters. Stillehavsøsters formerer seg raskt, og de vokser fort.
+Det gjør at de dekker store områder der de slår seg ned.
 Det blir ikke plass til andre muslingarter, som for eksempel blåskjell. Skallet til stillehavsøstersen er hardt, med skarpe kanter.
 Dyr som normalt spiser blåskjell klarer ikke å spise stillehavsøsters, og får problemer med å finne mat der stillehavsøstersen overtar.
 Å fjerne fremmedarter kan være en nærmest umulig oppgave. Nå skal du forsøke å fange de vandrende kongekrabbene.
