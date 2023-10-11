@@ -326,13 +326,13 @@ for (let index = 0; index < 4; index++) {
 Plast råtner ikke, men når den blir liggende i naturen brytes den ned til stadig mindre plastbiter.
 Mikroplast er plastbiter som er mindre enn 5 millimeter store.
 Biter av plast kan likne på mat, sånn at dyr spiser den.
-Noen plastbiter er til og med så små at dyreplankton kans spise dem.
+Noen plastbiter er til og med så små at dyreplankton kan spise dem.
 Når større dyr spiser dyreplankton med mikroplast i seg, får de også i seg plast.
 Dyrene kan ikke fordøye plasten, men den kan bli værende i kroppen deres og gjøre skade.
 Man har gjort funn av både fugler og delfiner med magen så full av plast at de ikke får i seg mat.
 Derfor må plasten bort fra havet.
 
-### Steg 14 Tegn din egen mikroplastsprite
+### Steg 14 Tegn din egen mikroplast-sprite
 Klikk på det grå kvadratet for å åpne sprite-editoren, og tegn mikroplast ved å lage tilfeldige mønstre av små prikker og streker i sterke farger.
 Husk å bruke farger som vil synes mot den blå havbakgrunnen i spillet.
 Klikk på ``||loops:Done||`` nede i høyre hjørne når du er fornøyd.
@@ -340,7 +340,7 @@ Klikk på ``||loops:Done||`` nede i høyre hjørne når du er fornøyd.
 ![Mikroplast](https://raw.githubusercontent.com/InspiriaSCC/dypdykk/master/assets/Mikroplast.jpg)
 
 ### Steg 15 Plasser mikroplasten tilfeldig i havet
-Om du tester spillet nå, finner du mikrplast bare ett sted i havet.
+Om du tester spillet nå, finner du mikroplast bare ett sted i havet.
 For å spre de 25 spritene, må du plassere hver av dem på et tilfeldig sted i havet.
 Hent blokken ``||scene:place mySprite on top of random||`` fra ``||scene:Scene||``-menyen og legg den inn nederst i ``||loops:repeat 25 times||``-blokken.
 Endre ``||variables:mySprite||`` til ``||variables:mySprite2||`` ved å klikke på ordet og velge ``||variables:mySprite2||`` fra menyen som kommer opp.
@@ -434,7 +434,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 Blokken ``||sprites:on sprite of kind Player overlaps otherSprite of kind Food||`` beskriver en hendelse der en sprite av typen ``||sprites:Player||`` overlapper en annen sprite av typen ``||sprites:Food||``.
 Spillfiguren din er en ``||variables:sprite||`` av typen ``||sprites:Player||``, mens mikroplasten nå er en ``||variables:otherSprite||`` av typen ``||sprites:Food||``.
 Du må altså sørge for at det er ``||variables:otherSprite||`` som blir fjernet.
-Klikk på det ovale feltet der det står ``||variables:otherSprite||`` og dra ``||variables:otherSprite||`` ned i ovalen i ``||sprites:destroy mySprite||`` der det står ``||variables:otherSprite||``, slik at det står ``||sprites:destroy otherSprite||`` der.
+Klikk på det ovale feltet der det står ``||variables:otherSprite||`` og dra ``||variables:otherSprite||`` ned i ovalen i ``||sprites:destroy mySprite||`` der det står ``||variables:mySprite||``, slik at det står ``||sprites:destroy otherSprite||`` der.
 Test spillet og sjekk at mikroplasten blir borte.
 
 ```blocks
@@ -465,8 +465,8 @@ At nye arter kommer til et område, kan skape problemer for dyrene som allerede 
 Nå skal du lage en invaderende type krabbe og forsøke å fange den.
 
 ### Steg 21 Lag en fremmed art
-Havet rundt øya er blitt infisert av kongekrabber som ødelegger økosystemet.
-For å lage mange kongekrabber trenger du en ny løkke.
+Havet rundt øya er blitt infisert av krabber som ødelegger økosystemet.
+For å lage mange krabber trenger du en ny løkke.
 Hent en ``||loops:repeat 4 times||``-blokk fra ``||loops:Loops||``-menyen og legg den inn nederst i ``||loops:on start||``-hovedkoden din.
 Endre tallet 4 til 25.
 
@@ -752,7 +752,7 @@ for (let index = 0; index < 25; index++) {
 ```
 
 ### Steg 26 Få krabbene til å sprette tilbake
-Som du ser går alle krabben ned mot høyre helt til de treffer utkanten av spillebrettet, og så følger de kanten til alle sitter nede i høyre hjørne.
+Som du ser går alle krabbene ned mot høyre helt til de treffer utkanten av spillebrettet, og så følger de kanten til alle sitter nede i høyre hjørne.
 Hent blokken ``||sprites:set mySprite bounce on wall on||`` fra ``||sprites:Sprites||``-menyen og legge den inn nederst i ``||loops:repeat 25 times||``-løkken der krabbene blir laget.
 Endre ``||variables:mySprite||`` til ``||variables:mySprite3||``.
 Test spillet og se hva som skjer.
